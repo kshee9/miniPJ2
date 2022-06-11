@@ -32,15 +32,12 @@ public class PostController {
         this.userRepository = userRepository;
     }
 
-    //Post객체 생성(커멘트 달려있는)
-    @PostMapping("/api/post")
+    //Post저장
+    @PostMapping("/api/post/{userId}")
     public Post createPost(
             @RequestBody PostRequestDto postRequestDto
-
     ) {
-
        return postService.createPost(postRequestDto);
-
     }
 
     //삭제

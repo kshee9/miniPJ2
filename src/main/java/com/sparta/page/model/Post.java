@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.awt.*;
 
 @Setter
 @Getter // get 함수를 일괄적으로 만들어줍니다.
@@ -43,14 +44,16 @@ public class Post {
     @Column(nullable = false)
     private Long userId;
 
-    public Book(BookRequestDto requestDto,Long userId) {
-        this.title = getTitle();
-        this.image = getImage();
-        this.author  = getAuthor();
-        this.publisher = getPublisher();
-        this.comment = getComment();
-        this.star = getStar();
+    public Post(PostRequestDto postRequestDto) {
+        this.title = postRequestDto.getTitle();
+        this.image = postRequestDto.getImage();
+        this.author  = postRequestDto.getAuthor();
+        this.publisher = postRequestDto.getPublisher();
+        this.comment = postRequestDto.getComment();
+        this.star = postRequestDto.getStar();
     }
+
+
 
 
 //    @ManyToMany

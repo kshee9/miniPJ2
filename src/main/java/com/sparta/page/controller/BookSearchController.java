@@ -25,7 +25,6 @@ public class BookSearchController {
     @ResponseBody
     public List<NaverBookDto> getItems(@RequestParam String query) throws IOException {
         List<NaverBookDto> naverBookDtoList = naverBookSearchService.getNaverBooks(query);
-
         return naverBookDtoList;
     }
 }
