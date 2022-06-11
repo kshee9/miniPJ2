@@ -1,7 +1,7 @@
-package com.sparta.miniteamproject3.controller;
+package com.sparta.page.controller;
 
-import com.sparta.miniteamproject3.dto.NaverBookDto;
-import com.sparta.miniteamproject3.service.NaverBookSearchService;
+import com.sparta.page.dto.NaverBookDto;
+import com.sparta.page.service.NaverBookSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

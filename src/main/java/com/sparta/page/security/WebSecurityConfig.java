@@ -110,7 +110,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new FormLoginAuthProvider(encodePassword());
     }
 
-    private JwtAuthFilter jwtFilter() throws Exception {
+    private JwtAuthFilter jwtFilter() throws Exception { //
         List<String> skipPathList = new ArrayList<>();
 
         // Static 정보 접근 허용

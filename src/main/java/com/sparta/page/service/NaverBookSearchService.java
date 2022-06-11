@@ -1,10 +1,10 @@
-package com.sparta.miniteamproject3.service;
+package com.sparta.page.service;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sparta.miniteamproject3.dto.NaverBookDto;
+import com.sparta.page.dto.NaverBookDto;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
