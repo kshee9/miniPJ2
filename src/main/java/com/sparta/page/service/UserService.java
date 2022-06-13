@@ -53,6 +53,10 @@ public class UserService {
         String username = requestDto.getUsername();
         String nickname = requestDto.getNickname();
 
+        if(username.equals(userRepository.findByUsername(requestDto.getUsername()))){
+            throw  new IllegalArgumentException("중복된 아이디가 존재합니다");
+        }
+
         // 패스워드 암호화
         String password = passwordEncoder.encode(requestDto.getPassword());
 

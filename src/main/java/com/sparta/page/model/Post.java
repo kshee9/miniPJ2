@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Setter
 @Getter // get 함수를 일괄적으로 만들어줍니다.
@@ -52,7 +53,19 @@ public class Post {
         this.star = postRequestDto.getStar();
     }
 
+    public Post(Optional<Books> books) {
 
+    }
+
+    public Post(String title, String author, String description, String image, String publisher, int star, String comment) {
+        this.title = title;
+        this.author = author;
+        this.description =description;
+        this.image = image;
+        this.publisher = publisher;
+        this.star = star;
+        this.comment = comment;
+    }
 
 
 //    @ManyToMany

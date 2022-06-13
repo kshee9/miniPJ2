@@ -23,13 +23,14 @@ public class BookSearchController {
     @GetMapping("/api/post")
     @ResponseBody
     public List<NaverBookDto> getItems(@RequestParam String query) throws IOException {
+        naverBookSearchService.saveBooks();
         List<NaverBookDto> naverBookDtoList = naverBookSearchService.getNaverBooks(query);
         return naverBookDtoList;
     }
 
-    @GetMapping ("/api/savedpost")
-    @ResponseBody
-    public  void  setNaverBookSearchService() throws IOException {
-        naverBookSearchService.saveBooks();
-    }
+//    @GetMapping ("/api/savedpost")
+//    @ResponseBody
+//    public  void  setNaverBookSearchService() throws IOException {
+//        naverBookSearchService.saveBooks();
+//    }
 }

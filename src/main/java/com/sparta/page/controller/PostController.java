@@ -1,5 +1,8 @@
 package com.sparta.page.controller;
 
+import com.sparta.page.dto.NaverBookDto;
+import com.sparta.page.dto.PostReadyRequestDto;
+import com.sparta.page.dto.PostReadyResponseDto;
 import com.sparta.page.dto.PostRequestDto;
 import com.sparta.page.model.Post;
 import com.sparta.page.repository.PostRepository;
@@ -8,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController // JSON으로 데이터를 주고받음을 선언합니다.
@@ -39,6 +41,11 @@ public class PostController {
 
     }
 
+    // 정보넘겨주는용
+    @PostMapping("/api/bookinfo")
+    public PostReadyResponseDto getBooksinfo(@RequestBody PostReadyRequestDto requestDto){
+        return postService.getBooksInfo(requestDto);
+    }
     //삭제
     @DeleteMapping("/api/post/{postId}")
     public Long deletePost(@PathVariable Long postId) {
@@ -51,10 +58,4 @@ public class PostController {
 
         return postRepository.findAll();
     }
-
-    //게시글 디테일
-    @GetMapping("/api/post/{postId}")
-    public Optional<Post> getPost(@PathVariable Long postId){
-        return postRepository.findById(postId);
-            }
 }

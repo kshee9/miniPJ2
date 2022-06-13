@@ -1,7 +1,10 @@
 package com.sparta.page.service;
 
 
+import com.sparta.page.dto.PostReadyRequestDto;
+import com.sparta.page.dto.PostReadyResponseDto;
 import com.sparta.page.dto.PostRequestDto;
+import com.sparta.page.model.Books;
 import com.sparta.page.model.Post;
 import com.sparta.page.repository.BookRepsitory;
 import com.sparta.page.repository.PostRepository;
@@ -21,6 +24,7 @@ public class PostService {
     private  final BookRepsitory bookRepsitory;
 
 
+
     @Autowired
     public PostService(
             PostRepository postRepository,
@@ -31,6 +35,13 @@ public class PostService {
         this.bookRepsitory = bookRepsitory;
     }
 
+
+    // 정보넘겨주기용
+    @Transactional
+    public PostReadyResponseDto getBooksInfo(PostReadyRequestDto requestDto){
+        Books books = bookRepsitory.findByisbn(requestDto.getIsbn());
+        return new PostReadyResponseDto(books.getTitle(), books.getAuthor(), books.getDescription(), books.getImage(), books.getPublisher());
+    }
 
     @Transactional
     public Post createPost(
