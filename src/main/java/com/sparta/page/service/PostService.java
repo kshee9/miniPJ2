@@ -3,8 +3,8 @@ package com.sparta.page.service;
 
 import com.sparta.page.dto.PostRequestDto;
 import com.sparta.page.model.Post;
+import com.sparta.page.repository.BookRepsitory;
 import com.sparta.page.repository.PostRepository;
-import com.sparta.page.security.UserDetailsImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -16,20 +16,29 @@ import javax.transaction.Transactional;
 
 @Service
 public class PostService {
-    PostRepository postRepository;
+    private  final PostRepository postRepository;
+
+    private  final BookRepsitory bookRepsitory;
+
 
     @Autowired
-    public PostService(PostRepository postRepository) {
+    public PostService(
+            PostRepository postRepository,
+            BookRepsitory bookRepsitory
+
+    ) {
         this.postRepository = postRepository;
+        this.bookRepsitory = bookRepsitory;
     }
 
 
     @Transactional
-    public Post createPost(PostRequestDto postRequestDto) {
+    public Post createPost(
+            PostRequestDto postRequestDto) {
 // 요청받은 DTO 로 DB에 저장할 객체 만들기
+
         Post post = new Post(postRequestDto);
         postRepository.save(post);
-
         return post;
     }
 

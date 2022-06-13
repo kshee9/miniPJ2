@@ -2,7 +2,6 @@ package com.sparta.page.service;
 
 import com.sparta.page.dto.SignupRequestDto;
 import com.sparta.page.model.User;
-import com.sparta.page.model.UserRoleEnum;
 import com.sparta.page.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,22 +21,43 @@ public class UserService {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
+    //닉네임 중복체크
+    @Transactional
+    public boolean usercheck(String nickname){
+
+        Optional<User> found = userRepository.findBynickname(nickname);
+        if (found.isPresent()){
+            return false;
+        }
+        else {
+            return  true;
+        }
+    }
+
+    //username 중복체크
+    @Transactional
+    public boolean idcheck(String username){
+        Optional<User> found = userRepository.findByUsername(username);
+        if(found.isPresent()){
+            return false;
+        }
+        else {
+            return  true;
+        }
+    }
+
+    //회원가입
     @Transactional
     public void registerUser(SignupRequestDto requestDto) {
-        // 회원 ID 중복 확인
+
         String username = requestDto.getUsername();
         String nickname = requestDto.getNickname();
-        Optional<User> found = userRepository.findByUsername(username);
-        if (found.isPresent()) {
-            throw new IllegalArgumentException("중복된 사용자 ID 가 존재합니다.");
-        }
-
 
         // 패스워드 암호화
         String password = passwordEncoder.encode(requestDto.getPassword());
 
-
         User user = new User(username, password,nickname);
         userRepository.save(user);
+
     }
 }

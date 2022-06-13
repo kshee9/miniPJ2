@@ -43,13 +43,13 @@ public class Post {
     @Column(nullable = false)
     private Long userId;
 
-    public Book(BookRequestDto requestDto,Long userId) {
-        this.title = getTitle();
-        this.image = getImage();
-        this.author  = getAuthor();
-        this.publisher = getPublisher();
-        this.comment = getComment();
-        this.star = getStar();
+    public Post(PostRequestDto requestDto) {
+        this.title = requestDto.getTitle();
+        this.image = requestDto.getImage();
+        this.author  = requestDto.getAuthor();
+        this.publisher = requestDto.getPublisher();
+        this.comment = requestDto.getComment();
+        this.star = requestDto.getStar();
     }
 
 

@@ -4,13 +4,12 @@ import com.sparta.page.dto.NaverBookDto;
 import com.sparta.page.service.NaverBookSearchService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @Controller
 public class BookSearchController {
     private final NaverBookSearchService naverBookSearchService;
@@ -27,5 +26,11 @@ public class BookSearchController {
         List<NaverBookDto> naverBookDtoList = naverBookSearchService.getNaverBooks(query);
 
         return naverBookDtoList;
+    }
+
+    @GetMapping ("/api/savedpost")
+    @ResponseBody
+    public  void  setNaverBookSearchService() throws IOException {
+        naverBookSearchService.saveBooks();
     }
 }
