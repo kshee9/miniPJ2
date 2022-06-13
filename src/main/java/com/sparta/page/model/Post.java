@@ -43,14 +43,16 @@ public class Post {
     @Column(nullable = false)
     private Long userId;
 
-    public Post(PostRequestDto requestDto) {
-        this.title = requestDto.getTitle();
-        this.image = requestDto.getImage();
-        this.author  = requestDto.getAuthor();
-        this.publisher = requestDto.getPublisher();
-        this.comment = requestDto.getComment();
-        this.star = requestDto.getStar();
+    public Post(PostRequestDto postRequestDto) {
+        this.title = postRequestDto.getTitle();
+        this.image = postRequestDto.getImage();
+        this.author  = postRequestDto.getAuthor();
+        this.publisher = postRequestDto.getPublisher();
+        this.comment = postRequestDto.getComment();
+        this.star = postRequestDto.getStar();
     }
+
+
 
 
 //    @ManyToMany

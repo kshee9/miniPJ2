@@ -4,6 +4,7 @@ import com.sparta.page.dto.NaverBookDto;
 import com.sparta.page.dto.PostRequestDto;
 import com.sparta.page.model.Post;
 import com.sparta.page.model.User;
+import com.sparta.page.model.UserRoleEnum;
 import com.sparta.page.repository.PostRepository;
 import com.sparta.page.repository.UserRepository;
 import com.sparta.page.security.UserDetailsImpl;
