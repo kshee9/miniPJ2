@@ -1,20 +1,14 @@
 package com.sparta.page.controller;
 
-import com.sparta.page.dto.NaverBookDto;
 import com.sparta.page.dto.PostRequestDto;
 import com.sparta.page.model.Post;
-import com.sparta.page.model.User;
-import com.sparta.page.model.UserRoleEnum;
 import com.sparta.page.repository.PostRepository;
-import com.sparta.page.repository.UserRepository;
-import com.sparta.page.security.UserDetailsImpl;
 import com.sparta.page.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Id;
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController // JSON으로 데이터를 주고받음을 선언합니다.
@@ -57,4 +51,10 @@ public class PostController {
 
         return postRepository.findAll();
     }
+
+    //게시글 디테일
+    @GetMapping("/api/post/{postId}")
+    public Optional<Post> getPost(@PathVariable Long postId){
+        return postRepository.findById(postId);
+            }
 }
