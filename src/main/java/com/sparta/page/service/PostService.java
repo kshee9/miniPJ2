@@ -44,8 +44,7 @@ public class PostService {
     }
 
     @Transactional
-    public Post createPost(
-            PostRequestDto postRequestDto) {
+    public Post createPost(PostRequestDto postRequestDto) {
 // 요청받은 DTO 로 DB에 저장할 객체 만들기
 
         Post post = new Post(postRequestDto);

@@ -48,20 +48,18 @@ public class UserService {
 
     //회원가입
     @Transactional
-    public void registerUser(SignupRequestDto requestDto) {
+    public boolean registerUser(SignupRequestDto requestDto) {
 
         String username = requestDto.getUsername();
         String nickname = requestDto.getNickname();
 
-        if(username.equals(userRepository.findByUsername(requestDto.getUsername()))){
-            throw  new IllegalArgumentException("중복된 아이디가 존재합니다");
-        }
+            // 패스워드 암호화
+            String password = passwordEncoder.encode(requestDto.getPassword());
+            User user2 = new User(username, password,nickname);
+            userRepository.save(user2);
+            return  true;
 
-        // 패스워드 암호화
-        String password = passwordEncoder.encode(requestDto.getPassword());
 
-        User user = new User(username, password,nickname);
-        userRepository.save(user);
 
     }
 }

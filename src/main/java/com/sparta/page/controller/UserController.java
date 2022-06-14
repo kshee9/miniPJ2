@@ -39,9 +39,9 @@ public class UserController {
 
     // 회원 가입 요청 처리
     @PostMapping("/user/signup")
-    public void registerUser(@RequestBody SignupRequestDto requestDto) {
+    public boolean registerUser(@RequestBody SignupRequestDto requestDto) {
 
-        userService.registerUser(requestDto);
+        return userService.registerUser(requestDto);
     }
 
     // 회원 관련 정보 받기

@@ -41,8 +41,8 @@ public class Post {
     @Column(nullable = false)
     private int star;
     //유저아이디
-    @Column(nullable = false)
-    private Long userId;
+//    @Column(nullable = false)
+//    private Long userId;
 
     public Post(PostRequestDto postRequestDto) {
         this.title = postRequestDto.getTitle();
@@ -51,10 +51,7 @@ public class Post {
         this.publisher = postRequestDto.getPublisher();
         this.comment = postRequestDto.getComment();
         this.star = postRequestDto.getStar();
-    }
-
-    public Post(Optional<Books> books) {
-
+        this.description = postRequestDto.getDescription();
     }
 
     public Post(String title, String author, String description, String image, String publisher, int star, String comment) {

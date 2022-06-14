@@ -1,6 +1,5 @@
 package com.sparta.page.controller;
 
-import com.sparta.page.dto.NaverBookDto;
 import com.sparta.page.dto.PostReadyRequestDto;
 import com.sparta.page.dto.PostReadyResponseDto;
 import com.sparta.page.dto.PostRequestDto;
@@ -11,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController // JSON으로 데이터를 주고받음을 선언합니다.
@@ -30,12 +30,9 @@ public class PostController {
 
     }
 
-    //Post객체 생성(커멘트 달려있는)  검색한후에 isbn 값을 프론트가 보내주면 검색 메소드를 활용해서 isbn 값으로 다시 검색후 검색한 것의 필요한값들을 넣어서 생성
+    //Post객체 생성(커멘트 달려있는)
     @PostMapping("/api/post")
-    public Post createPost(
-            @RequestBody PostRequestDto postRequestDto
-
-    ) {
+    public Post createPost(@RequestBody PostRequestDto postRequestDto) {
 
        return postService.createPost(postRequestDto);
 
@@ -57,5 +54,9 @@ public class PostController {
     public List<Post> getAllPost() {
 
         return postRepository.findAll();
+    }
+    @GetMapping("/api/post/{postid}")
+    public Optional<Post> getOnePost(@PathVariable Long postid){
+            return  postRepository.findById(postid);
     }
 }
