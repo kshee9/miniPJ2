@@ -1,5 +1,7 @@
 package com.sparta.page.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.sparta.page.dto.SignUpResponseDto;
 import com.sparta.page.dto.SignupRequestDto;
 import com.sparta.page.dto.UserInfoDto;
 import com.sparta.page.security.UserDetailsImpl;
@@ -14,13 +16,17 @@ public class UserController {
 
     private final UserService userService;
 
+//    private  final KakaoUserService kakaoUserService;
+
 
     @Autowired
     public UserController(
             UserService userService
+
     ) {
 
         this.userService = userService;
+
     }
 
     // 회원 로그인 페이지
@@ -39,7 +45,7 @@ public class UserController {
 
     // 회원 가입 요청 처리
     @PostMapping("/user/signup")
-    public boolean registerUser(@RequestBody SignupRequestDto requestDto) {
+    public SignUpResponseDto registerUser(@RequestBody SignupRequestDto requestDto) {
 
         return userService.registerUser(requestDto);
     }
@@ -63,4 +69,5 @@ public class UserController {
     public boolean idcheck(@PathVariable String username){
         return userService.idcheck(username);
     }
+
 }

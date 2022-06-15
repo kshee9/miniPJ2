@@ -3,6 +3,7 @@ package com.sparta.page.controller;
 import com.sparta.page.dto.PostReadyRequestDto;
 import com.sparta.page.dto.PostReadyResponseDto;
 import com.sparta.page.dto.PostRequestDto;
+import com.sparta.page.dto.PostResponseDto;
 import com.sparta.page.model.Post;
 import com.sparta.page.repository.PostRepository;
 import com.sparta.page.service.PostService;
@@ -51,12 +52,13 @@ public class PostController {
     }
     //게시글 전체 조회
     @GetMapping("/api/posts")
-    public List<Post> getAllPost() {
-
-        return postRepository.findAll();
+    public List<PostResponseDto> getAllPost3() {
+        return postService.getpost3();
     }
+
     @GetMapping("/api/post/{postid}")
     public Optional<Post> getOnePost(@PathVariable Long postid){
-            return  postRepository.findById(postid);
+
+        return  postRepository.findById(postid);
     }
 }

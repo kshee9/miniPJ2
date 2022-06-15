@@ -4,6 +4,7 @@ package com.sparta.page.service;
 import com.sparta.page.dto.PostReadyRequestDto;
 import com.sparta.page.dto.PostReadyResponseDto;
 import com.sparta.page.dto.PostRequestDto;
+import com.sparta.page.dto.PostResponseDto;
 import com.sparta.page.model.Books;
 import com.sparta.page.model.Post;
 import com.sparta.page.repository.BookRepsitory;
@@ -16,6 +17,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class PostService {
@@ -42,6 +45,25 @@ public class PostService {
         Books books = bookRepsitory.findByisbn(requestDto.getIsbn());
         return new PostReadyResponseDto(books.getTitle(), books.getAuthor(), books.getDescription(), books.getImage(), books.getPublisher());
     }
+
+    @Transactional
+    public List<PostResponseDto> getpost3(){
+        List<PostResponseDto> postResponseDtos = new ArrayList<>();
+       List<Post> posts = postRepository.findAll();
+        for (Post post  :posts) {
+           String image = post.getImage();
+           String title  = post.getTitle();
+           int star = post.getStar();
+
+           PostResponseDto postResponseDto = new PostResponseDto(title,image,star);
+           postResponseDtos.add(postResponseDto);
+        }
+
+
+        return postResponseDtos;
+    }
+
+
 
     @Transactional
     public Post createPost(PostRequestDto postRequestDto) {

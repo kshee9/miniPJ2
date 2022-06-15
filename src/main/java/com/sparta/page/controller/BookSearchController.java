@@ -24,10 +24,9 @@ public class BookSearchController {
     @ResponseBody
     public List<NaverBookDto> getItems(@RequestParam String query) throws IOException {
         naverBookSearchService.saveBooks();
-        List<NaverBookDto> naverBookDtoList = naverBookSearchService.getNaverBooks(query);
-        return naverBookDtoList;
+        return naverBookSearchService.getNaverBooks(query);
     }
-
+// DB에 검색값 저장하려고 돌리는 것이였으나  위에 API 안에 값을 넣어놨기때문에 의미가없다
 //    @GetMapping ("/api/savedpost")
 //    @ResponseBody
 //    public  void  setNaverBookSearchService() throws IOException {

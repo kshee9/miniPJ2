@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Optional;
 
 @Setter
@@ -40,9 +41,7 @@ public class Post {
 
     @Column(nullable = false)
     private int star;
-    //유저아이디
-//    @Column(nullable = false)
-//    private Long userId;
+
 
     public Post(PostRequestDto postRequestDto) {
         this.title = postRequestDto.getTitle();
@@ -63,6 +62,7 @@ public class Post {
         this.star = star;
         this.comment = comment;
     }
+
 
 
 //    @ManyToMany
