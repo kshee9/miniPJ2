@@ -13,9 +13,7 @@ public class SignUpResponseDto {
 
     private  boolean result;
 
-    public SignUpResponseDto(boolean b) {
-        this.result = b;
-    }
+
 
     public SignUpResponseDto(boolean b, String errorMessage) {
         this.result =b;

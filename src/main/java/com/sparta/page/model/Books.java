@@ -3,10 +3,12 @@ package com.sparta.page.model;
 import com.sparta.page.dto.NaverBookDto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 
 @Getter
+@Setter
 @Entity
 @NoArgsConstructor
 public class Books {
