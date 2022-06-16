@@ -19,4 +19,8 @@ public class SignUpResponseDto {
         this.result =b;
         this.errorMessage = errorMessage;
     }
+
+    public SignUpResponseDto(boolean b) {
+        this.result = b;
+    }
 }

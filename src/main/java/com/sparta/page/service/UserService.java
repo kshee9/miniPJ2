@@ -85,8 +85,7 @@ public class UserService {
         String password = passwordEncoder.encode(requestDto.getPassword());
         User user2 = new User(username, password, nickname);
         userRepository.save(user2);
-        errorMessage = "회원가입 성공";
-        return new SignUpResponseDto(true,errorMessage);
+        return new SignUpResponseDto(true);
 
 
     }
