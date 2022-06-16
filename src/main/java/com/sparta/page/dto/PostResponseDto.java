@@ -14,11 +14,14 @@ public class PostResponseDto {
 
     private int star;
 
+    private Long postId;
 
 
-    public PostResponseDto(String title, String image, int star) {
+
+    public PostResponseDto(String title, String image, int star,Long postId) {
         this.title = title;
         this.image = image;
         this.star = star;
+        this.postId= postId;
     }
 }

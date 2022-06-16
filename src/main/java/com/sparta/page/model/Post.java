@@ -1,6 +1,7 @@
 package com.sparta.page.model;
 
 import com.sparta.page.dto.PostRequestDto;
+import com.sparta.page.security.UserDetailsImpl;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,7 +17,7 @@ import java.util.Optional;
 public class Post {
 
     // ID가 자동으로 생성 및 증가합니다.
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 
@@ -42,46 +43,32 @@ public class Post {
     @Column(nullable = false)
     private int star;
 
+    @JoinColumn(name = "USER_ID")
+    @ManyToOne
+    private User user;
 
-    public Post(PostRequestDto postRequestDto) {
+
+
+    public Post(PostRequestDto postRequestDto, User user) {
         this.title = postRequestDto.getTitle();
         this.image = postRequestDto.getImage();
-        this.author  = postRequestDto.getAuthor();
+        this.author = postRequestDto.getAuthor();
+        this.publisher = postRequestDto.getPublisher();
+        this.comment = postRequestDto.getComment();
+        this.star = postRequestDto.getStar();
+        this.description = postRequestDto.getDescription();
+        this.user = user;
+    }
+
+    public void update(PostRequestDto postRequestDto) {
+        this.title = postRequestDto.getTitle();
+        this.image = postRequestDto.getImage();
+        this.author = postRequestDto.getAuthor();
         this.publisher = postRequestDto.getPublisher();
         this.comment = postRequestDto.getComment();
         this.star = postRequestDto.getStar();
         this.description = postRequestDto.getDescription();
     }
 
-    public Post(String title, String author, String description, String image, String publisher, int star, String comment) {
-        this.title = title;
-        this.author = author;
-        this.description =description;
-        this.image = image;
-        this.publisher = publisher;
-        this.star = star;
-        this.comment = comment;
-    }
 
-
-
-//    @ManyToMany
-//    private List<Folder> folderList;
-
-//    // 관심 상품 생성 시 이용합니다.
-//    public Book(BookRequestDto requestDto, Long userId) {
-//// 입력값 Validation
-//        BookValidator.validateBookInput(requestDto, userId);
-//
-//// 관심상품을 등록한 회원 Id 저장
-//        this.userId = userId;
-//        this.title = requestDto.getTitle();
-//        this.image = requestDto.getImage();
-//
-//
-//    }
-
-//    public void addFolder(Folder folder) {
-//        this.folderList.add(folder);
-//    }
 }
